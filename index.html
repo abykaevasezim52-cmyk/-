@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ky">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Камила — Кыз узатуу</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: #f8f3ec;
+      color: #4b1f29;
+      font-family: "Montserrat", sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* =========================
+       ENVELOPE SCREEN
+    ========================= */
+
+    .envelope-screen {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      background:
+        radial-gradient(circle at center, #fffaf4 0%, #f5eadf 100%);
+
+      transition:
+        opacity 1s ease,
+        visibility 1s ease;
+    }
+
+    .envelope-screen.hide {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .envelope-wrapper {
+      width: min(360px, 85vw);
+      text-align: center;
+    }
+
+    .envelope-title {
+      margin-bottom: 30px;
+
+      font-family: "Cormorant Garamond", serif;
+      font-size: 22px;
+      letter-spacing: 3px;
+      color: #6c2835;
+    }
+
+    .envelope {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1.5;
+      cursor: pointer;
+
+      filter: drop-shadow(0 20px 30px rgba(91, 39, 47, 0.16));
+
+      transition: transform 0.4s ease;
+    }
+
+    .envelope:hover {
+      transform: translateY(-5px);
+    }
+
+    .envelope-back {
+      position: absolute;
+      inset: 0;
+
+      background: #eee0d2;
+      border: 1px solid #d4b9a1;
+      border-radius: 4px;
+    }
+
+    .envelope-paper {
+      position: absolute;
+
+      left: 8%;
+      right: 8%;
+      top: 8%;
+
+      height: 84%;
+
+      background: #fffaf5;
+      border-radius: 3px;
+
+      transition: transform 1s ease;
+    }
+
+    .envelope-front {
+      position: absolute;
+      inset: 0;
+
+      background: #ead8c9;
+
+      clip-path: polygon(
+        0 45%,
+        50% 100%,
+        100% 45%,
+        100% 100%,
+        0 100%
+      );
+
+      z-index: 4;
+    }
+
+    .envelope-flap {
+      position: absolute;
+      inset: 0;
+
+      background: #dfc7b5;
+
+      clip-path: polygon(
+        0 0,
+        100% 0,
+        50% 58%
+      );
+
+      transform-origin: top;
+      transition: transform 0.9s ease;
+
+      z-index: 5;
+    }
+
+    .envelope.open .envelope-flap {
+      transform: rotateX(180deg);
+      z-index: 1;
+    }
+
+    .envelope.open .envelope-paper {
+      transform: translateY(-65%);
+    }
+
+    .seal {
+      position: absolute;
+
+      left: 50%;
+      top: 52%;
+
+      transform: translate(-50%, -50%);
+
+      width: 65px;
+      height: 65px;
+
+      border-radius: 50%;
+
+      background: #722b39;
+      color: #f9eadc;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      font-family: "Cormorant Garamond", serif;
+      font-size: 28px;
+
+      z-index: 10;
+
+      box-shadow: 0 5px 15px rgba(80, 30, 40, 0.2);
+
+     
